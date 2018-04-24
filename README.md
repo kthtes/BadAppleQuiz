@@ -151,3 +151,6 @@ The official solution requires 5 moves. But actually 4 moves is sufficient:
 (4,4)down, (7,3)right, (9,5)right, (9,2)right
 
 You can verify the solution with the C or Lua program. The C program is very fast and highly optimized. The Lua program is relatively slow.
+
+## The C code and Lua code
+The C code includes 3 files: main.c, BAQuiz.h and BAQuiz.c. I used C here to simulate an objective mechanic like C++. In main.c, you can input new quizzes just as the examples:
