@@ -154,3 +154,18 @@ You can verify the solution with the C or Lua program. The C program is very fas
 
 ## The C code and Lua code
 The C code includes 3 files: main.c, BAQuiz.h and BAQuiz.c. I used C here to simulate an objective mechanic like C++. In main.c, you can input new quizzes just as the examples:
+
+```c
+// create a quiz with 2 rows, 4 colums, and within 3 steps.
+// two rows are: "br-b" and "b-r-", in the program we use a space for an empty grid 
+BAQuiz* q2=BAQuizCreate(2, 4, "br brb r", 3);
+
+// output the quiz
+printf("%s",q2->tostring(q2));
+
+// solve the quiz
+assert(q2->solve(q2));
+
+// free the memory used by the quiz
+BAQuizRelease(q2);
+```
