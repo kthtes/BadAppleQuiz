@@ -156,6 +156,8 @@ You can verify the solution with the C or Lua program. The C program is very fas
 The C code includes 3 files: main.c, BAQuiz.h and BAQuiz.c. I used C here to simulate an objective mechanic like C++. In main.c, you can input new quizzes just as the examples:
 
 ```c
+// in main.c:
+
 // create a quiz with 2 rows, 4 colums, and within 3 steps.
 // two rows are: "br-b" and "b-r-", in the program we use a space for an empty grid 
 BAQuiz* q2=BAQuizCreate(2, 4, "br brb r", 3);
@@ -173,6 +175,8 @@ BAQuizRelease(q2);
 The Lua version is very similar to the C version:
 
 ```lua
+-- in Main() function of BadApple.lua:
+
 -- create the quiz, the arguments are exactly the same as the C version
 local q72=BAQuiz:new(5,6,"   r   rrx   xxb  bxbx  xbxb  ",5)
 
