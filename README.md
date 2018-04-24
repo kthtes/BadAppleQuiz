@@ -74,8 +74,18 @@ Moves: 0/1        Moves: 1/1        Moves: 1/1
 6 y b b - b       6 y b b - b       6 y b b y b
 </pre>
 
-Clearly, that won't solve the quiz. In order to
+Clearly, that won't solve the quiz. Actually we should make use of the gravity and solve it with (6,5)left:
 
+<pre>
+Moves: 0/1        Moves: 1/1        Moves: 1/1        Moves: 1/1        Moves: 1/1 (solved)
+  1 2 3 4 5         1 2 3 4 5         1 2 3 4 5        1 2 3 4 5         1 2 3 4 5
+1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -
+2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -
+3 - - - - -  ==>  3 - - - - -  ==>  3 - - - - -  ==>   3 - - - - -  ==>  3 - - - - -
+4 - - - - -       4 - - - - -       4 - - - - -        4 - - - - -       4 - - - - -
+5 - y y - -       5 - y y - -       5 - y y - -        5 - - - - -       5 - - - - -
+6 y b b - b       6 y b b b -       6 y - - - -        6 y y y - -       6 - - - - -
+</pre>
 
 In addition to the 3 normal fruit objects, there are 2 special fruit objects: the bad apple (bad for short) and the eater. For the former one, if the player form a line of 3 bad apples, she loses this level. For the eater, after every move, the eater will fall down one grid vertically, eating the fruit object below it; and if the eater is already in the lowest row, it will fall out of screen.
 
