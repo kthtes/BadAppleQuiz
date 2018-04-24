@@ -5,7 +5,7 @@ This is a hobby project done in 2011. Bad Apples is an iOS game including 100 di
 
 In the playground, there are 3 normal types of fruit: yellow (y for short), red (r for short) and blue (b for short). The player should make a move (I'll explain later) to form a horizontal or vertical line of 3 or more same kind of fruit (e.g. 3 red ones in a line) to eliminate them. The player must eliminate all fruit objects within a certain amount of moves to solve a quiz level. There are 100 levels in that game.
 
-A simplest playground looks like this (we use dot to mark an empty grid):
+A simplest playground looks like this (we use a minus sign to mark an empty grid):
 
 <pre>
 Moves: 0/1  
@@ -20,25 +20,27 @@ Moves: 0/1
 
 This is very easy. Just move the fruit object at (row=6, column=5) to the left, which can be recorded as (6,5)left, and it becomes:
 
+<pre>
 Moves: 1/1 (solved)
- 12345
-1.....
-2.....
-3.....
-4.....
-5.....
-6.bbb.
+  1 2 3 4 5  
+1 - - - - -  
+2 - - - - -  
+3 - - - - -  
+4 - - - - -  
+5 - - - - -  
+6 - b b b -  
+</pre>
 
 Please note that after (6,5)left, the "Moves" changes to "1/1". And since (6,3), (6,4), and (6,5) forms a "line of three", they are eliminated. So the playground becomes:
 
 Moves: 1/1
   1 2 3 4 5
-1 . . . . .
-2 . . . . .
-3 . . . . .
-4 . . . . .
-5 . . . . .
-6 . . . . .
+1 - - - - -  
+2 - - - - -  
+3 - - - - -  
+4 - - - - -  
+5 - - - - -  
+6 - - - - -  
 
 Since there's no fruit object, you've solved this quiz level.
 
