@@ -105,8 +105,8 @@ Moves: 0/1        Moves: 1/1        Moves: 1/1         Moves: 1/1        Moves: 
   1 2 3 4 5         1 2 3 4 5         1 2 3 4 5          1 2 3 4 5         1 2 3 4 5          1 2 3 4 5
 1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -        1 - - - - -
 2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -
-3 x - e - -  ==>  3 x - e - -  ==>  3 x - e - -  ==>   3 x - - - -  ==>  3 - - - - -  ==>   3 - - - - - (end of player's turn)
-4 e - x - -       4 e - x - -       4 e - x - -        4 e - e - -       4 x - e - -        4 x - - - -
+3 x - e - -  ==>  3 x - e - -  ==>  3 x - e - -  ==>   3 x - - - -  ==>  3 - - - - -  ==>   3 - - - - - (player's turn ends)
+4 e - x - -       4 e - x - -       4 e - x - -        4 e - e - -       4 x - e - -        4 x - - - - 
 5 e y y - -       5 e y y - -       5 e y y - -        5 e - x - -       5 e - x - -        5 e - e - - 
 6 y b b e b       6 y b b b e       6 y - - - e        6 y y y - e       6 e - - - e        6 e - x - e
 </pre>
