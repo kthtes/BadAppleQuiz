@@ -9,13 +9,13 @@ A simplest playground looks like this (we use dot to mark an empty grid):
 
 <pre>
 Moves: 0/1  
- 12345  
-1-----  
-2-----  
-3-----  
-4-----  
-5-----  
-6-bb-b  
+  1 2 3 4 5  
+1 - - - - -  
+2 - - - - -  
+3 - - - - -  
+4 - - - - -  
+5 - - - - -  
+6 - b b - b  
 </pre>
 
 This is very easy. Just move the fruit object at (row=6, column=5) to the left, which can be recorded as (6,5)left, and it becomes:
