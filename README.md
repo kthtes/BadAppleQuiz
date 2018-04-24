@@ -77,8 +77,8 @@ Moves: 0/1        Moves: 1/1        Moves: 1/1
 Clearly, that won't solve the quiz. Actually we should make use of the gravity and solve it with (6,5)left:
 
 <pre>
-Moves: 0/1        Moves: 1/1        Moves: 1/1        Moves: 1/1        Moves: 1/1 (solved)
-  1 2 3 4 5         1 2 3 4 5         1 2 3 4 5        1 2 3 4 5         1 2 3 4 5
+Moves: 0/1        Moves: 1/1        Moves: 1/1         Moves: 1/1        Moves: 1/1 (solved)
+  1 2 3 4 5         1 2 3 4 5         1 2 3 4 5          1 2 3 4 5         1 2 3 4 5
 1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -
 2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -
 3 - - - - -  ==>  3 - - - - -  ==>  3 - - - - -  ==>   3 - - - - -  ==>  3 - - - - -
@@ -89,7 +89,7 @@ Moves: 0/1        Moves: 1/1        Moves: 1/1        Moves: 1/1        Moves: 1
 
 From the above, we can see this is how gravity rule works:
 1. The player makes a move
-2. Fall phase: for each midair (the grid below is empty) fruit object, let it fall down until it reaches another fruit object or the bottom row
+2. Fall phase: from the lowest row to the highest row, for each midair (the grid below is empty) fruit object, let it fall down until it reaches another fruit object or the bottom row
 3. Elim phase: eliminate every "line of 3+"
 4. If nothing is eliminated in the previous step, goto 5; else, goto 2
 5. End of player's move
@@ -98,16 +98,37 @@ From step 4, it is clearly that a chain reaction can be triggered. In that case,
 Fall => Elim => Fall => Elim => Fall => Elim => etc.
 
 ## Special fruit objects
-In addition to the 3 normal fruit objects, there are 2 special fruit objects: the bad apple (b for short) and the eater (e for short). For the former one, if the player form a line of 3 bad apples, she loses this level. For the eater, *after the end of player's move*, the eater will fall down one grid vertically, eating the fruit object (including a bad apple) below it; and if the eater is already in the lowest row, it will fall out of screen. See this example:
+In addition to the 3 normal fruit objects, there are 2 special fruit objects: the bad apple (x for short) and the eater (e for short). For the former one, if the player form a line of 3 bad apples, she loses this level. For the eater, **after the end of player's move**, the eater falls one grid down, eating the fruit object (including a bad apple, but **not** another eater) below it; and if the eater is already at the lowest row, it will fall out of screen. See this example:
 
 <pre>
-Moves: 0/1        Moves: 1/1        Moves: 1/1        Moves: 1/1        Moves: 1/1 (solved)
-  1 2 3 4 5         1 2 3 4 5         1 2 3 4 5        1 2 3 4 5         1 2 3 4 5
-1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -
-2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -
-3 - - - - -  ==>  3 - - - - -  ==>  3 - - - - -  ==>   3 - - - - -  ==>  3 - - - - -
-4 - - - - -       4 - - - - -       4 - - - - -        4 - - - - -       4 - - - - -
-5 - y y - -       5 - y y - -       5 - y y - -        5 - - - - -       5 - - - - -
-6 y b b - b       6 y b b b -       6 y - - - -        6 y y y - -       6 - - - - -
+Moves: 0/1        Moves: 1/1        Moves: 1/1         Moves: 1/1        Moves: 1/1         Moves: 1/1
+  1 2 3 4 5         1 2 3 4 5         1 2 3 4 5          1 2 3 4 5         1 2 3 4 5          1 2 3 4 5
+1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -        1 - - - - -
+2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -
+3 x - e - -  ==>  3 x - e - -  ==>  3 x - e - -  ==>   3 x - - - -  ==>  3 - - - - -  ==>   3 - - - - - (end of player's turn)
+4 e - x - -       4 e - x - -       4 e - x - -        4 e - e - -       4 x - e - -        4 x - - - -
+5 e y y - -       5 e y y - -       5 e y y - -        5 e - x - -       5 e - x - -        5 e - e - - 
+6 y b b e b       6 y b b b e       6 y - - - e        6 y y y - e       6 e - - - e        6 e - x - e
 </pre>
+
+After (6,5)left, the blue ones at the bottom line are eliminated, which triggers a "fall", which triggers an "elim", which then triggers a "fall" again. After that, every fruit object is either on another one, or on the ground, plus, there's no "line of 3+", so the player's turn ends. Since the player's turn has ended, the eater should start moving:
+
+<pre>
+Moves: 0/1        Moves: 1/1 (solved)
+  1 2 3 4 5         1 2 3 4 5
+1 - - - - -       1 - - - - -
+2 - - - - -  eat  2 - - - - -
+3 - - - - -  ==>  3 - - - - -  (end of eating)
+4 x - - - -       4 - - - - -
+5 e - e - -       5 x - - - -
+6 e - x - e       6 e - e - -
+</pre>
+
+Now let's see what happens here by **column**. 
+- In column 1, there are one bad apple at (4,1), two eaters at (5,1) and (6,1). (6,1)e falls out of the screen, and (5,1)e falls down one grid, and therefore (4,1)x falls with them. 
+- In column 3, (5,3)e is above (6,3)x, so the eater eats the bad apple. 
+- In column 5, the eater falls out of the screen.
+
+**The player don't have to eliminate bad apples or eaters to solve the quiz.** That's why the last state is considered a win state.
+
 
