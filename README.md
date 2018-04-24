@@ -169,3 +169,12 @@ assert(q2->solve(q2));
 // free the memory used by the quiz
 BAQuizRelease(q2);
 ```
+
+The Lua version is very similar to the C version:
+
+```lua
+local q72=BAQuiz:new(5,6,"   r   rrx   xxb  bxbx  xbxb  ",5)
+print(q72)
+assert(BAQuiz.solve(q72))
+print(q72:get_solver())
+```
