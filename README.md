@@ -98,5 +98,16 @@ From step 4, it is clearly that a chain reaction can be triggered. In that case,
 Fall => Elim => Fall => Elim => Fall => Elim => etc.
 
 ## Special fruit objects
-In addition to the 3 normal fruit objects, there are 2 special fruit objects: the bad apple (b for short) and the eater (e for short). For the former one, if the player form a line of 3 bad apples, she loses this level. For the eater, after every move, the eater will fall down one grid vertically, eating the fruit object (including a bad apple) below it; and if the eater is already in the lowest row, it will fall out of screen.
+In addition to the 3 normal fruit objects, there are 2 special fruit objects: the bad apple (b for short) and the eater (e for short). For the former one, if the player form a line of 3 bad apples, she loses this level. For the eater, *after the end of player's move*, the eater will fall down one grid vertically, eating the fruit object (including a bad apple) below it; and if the eater is already in the lowest row, it will fall out of screen. See this example:
+
+<pre>
+Moves: 0/1        Moves: 1/1        Moves: 1/1        Moves: 1/1        Moves: 1/1 (solved)
+  1 2 3 4 5         1 2 3 4 5         1 2 3 4 5        1 2 3 4 5         1 2 3 4 5
+1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -
+2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -
+3 - - - - -  ==>  3 - - - - -  ==>  3 - - - - -  ==>   3 - - - - -  ==>  3 - - - - -
+4 - - - - -       4 - - - - -       4 - - - - -        4 - - - - -       4 - - - - -
+5 - y y - -       5 - y y - -       5 - y y - -        5 - - - - -       5 - - - - -
+6 y b b - b       6 y b b b -       6 y - - - -        6 y y y - -       6 - - - - -
+</pre>
 
