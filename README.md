@@ -8,24 +8,24 @@ In the playground, there are 3 normal types of fruit: yellow (y for short), red 
 A simplest playground looks like this (we use dot to mark an empty grid):
 
 Moves: 0/1  
-  1 2 3 4 5  
-1 . . . . .  
-2 . . . . .  
-3 . . . . .  
-4 . . . . .  
-5 . . . . .  
-6 . b b . b  
+ 12345  
+1.....  
+2.....  
+3.....  
+4.....  
+5.....  
+6.bb.b  
 
 This is very easy. Just move the fruit object at (row=6, column=5) to the left, which can be recorded as (6,5)left, and it becomes:
 
 Moves: 1/1 (solved)
-  1 2 3 4 5
-1 . . . . .
-2 . . . . .
-3 . . . . .
-4 . . . . .
-5 . . . . .
-6 . b b b .
+ 12345
+1.....
+2.....
+3.....
+4.....
+5.....
+6.bbb.
 
 Please note that after (6,5)left, the "Moves" changes to "1/1". And since (6,3), (6,4), and (6,5) forms a "line of three", they are eliminated. So the playground becomes:
 
