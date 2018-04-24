@@ -173,8 +173,15 @@ BAQuizRelease(q2);
 The Lua version is very similar to the C version:
 
 ```lua
+-- create the quiz, the arguments are exactly the same as the C version
 local q72=BAQuiz:new(5,6,"   r   rrx   xxb  bxbx  xbxb  ",5)
+
+-- print the quiz
 print(q72)
+
+-- solve the quiz
 assert(BAQuiz.solve(q72))
+
+-- print the steps of the solver
 print(q72:get_solver())
 ```
