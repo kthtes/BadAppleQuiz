@@ -21,7 +21,7 @@ Moves: 0/1
 This is very easy. Just move the fruit object at (row=6, column=5) to the left, which can be recorded as (6,5)left, and it becomes:
 
 <pre>
-Moves: 1/1 (solved)
+Moves: 1/1
   1 2 3 4 5  
 1 - - - - -  
 2 - - - - -  
@@ -33,7 +33,8 @@ Moves: 1/1 (solved)
 
 Please note that after (6,5)left, the "Moves" changes to "1/1". And since (6,3), (6,4), and (6,5) forms a "line of three", they are eliminated. So the playground becomes:
 
-Moves: 1/1
+<pre>
+Moves: 1/1 (solved)
   1 2 3 4 5
 1 - - - - -  
 2 - - - - -  
@@ -41,6 +42,7 @@ Moves: 1/1
 4 - - - - -  
 5 - - - - -  
 6 - - - - -  
+</pre>
 
 Since there's no fruit object, you've solved this quiz level.
 
