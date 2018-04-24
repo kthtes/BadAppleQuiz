@@ -1,8 +1,8 @@
 # Bad Apples Quiz Solver
-A C / Lua bilingual solver program to solve all the quizzes in the iOS game Bad Apples - this is a hobby project done in 2011. 
+A C / Lua bilingual solver program to solve all the quizzes in the iOS game *Bad Apples* - this is a hobby project done in 2011. 
 
 ## Basic rules
-Bad Apples is an iOS game including 100 different quizzes. Each quiz has a fixed *N*x*M* (*N* rows, *M* columns) gridded playground, with *N*x*M* grids in all.
+Bad Apples is an iOS game including 100 different quizzes. Each quiz has a fixed *N* x *M* (*N* rows, *M* columns) gridded playground, with *N* x *M* grids in all.
 
 In the playground, there are 3 normal types of fruit: yellow (y for short), red (r for short) and blue (b for short). The player should make a move (I'll explain later) to form a horizontal or vertical "line of 3+": a horizontal or vertical (not diagonal) line of 3 or more same kind of fruit objects (e.g. 3 red ones in a horizontal line, or 5 blue ones in a vertical line) to eliminate them. The player must eliminate all fruit objects within a certain amount of moves to solve a quiz level. There are 100 levels in that game.
 
