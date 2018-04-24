@@ -104,14 +104,14 @@ In addition to the 3 normal fruit objects, there are 2 special fruit objects: th
 Moves: 0/1        Moves: 1/1        Moves: 1/1         Moves: 1/1        Moves: 1/1         Moves: 1/1
   1 2 3 4 5         1 2 3 4 5         1 2 3 4 5          1 2 3 4 5         1 2 3 4 5          1 2 3 4 5
 1 - - - - -       1 - - - - -       1 - - - - -        1 - - - - -       1 - - - - -        1 - - - - -
-2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -
-3 x - e - -  ==>  3 x - e - -  ==>  3 x - e - -  ==>   3 x - - - -  ==>  3 - - - - -  ==>   3 - - - - - (player's turn ends)
-4 e - x - -       4 e - x - -       4 e - x - -        4 e - e - -       4 x - e - -        4 x - - - - 
-5 e y y - -       5 e y y - -       5 e y y - -        5 e - x - -       5 e - x - -        5 e - e - - 
+2 - - - - - move  2 - - - - -  elim 2 - - - - -  fall  2 - - - - -  elim 2 - - - - -  fall  2 - - - - - end
+3 x - e - -  ==>  3 x - e - -  ==>  3 x - e - -  ==>   3 x - - - -  ==>  3 - - - - -  ==>   3 - - - - - of
+4 e - x - -       4 e - x - -       4 e - x - -        4 e - e - -       4 x - e - -        4 x - - - - player's
+5 e y y - -       5 e y y - -       5 e y y - -        5 e - x - -       5 e - x - -        5 e - e - - move
 6 y b b e b       6 y b b b e       6 y - - - e        6 y y y - e       6 e - - - e        6 e - x - e
 </pre>
 
-After (6,5)left, the blue ones at the bottom line are eliminated, which triggers a "fall", which triggers an "elim", which then triggers a "fall" again. After that, every fruit object is either on another one, or on the ground, plus, there's no "line of 3+", so the player's turn ends. Since the player's turn has ended, the eater should start moving:
+After (6,5)left, the blue ones at the bottom line are eliminated, which triggers a "fall", which triggers an "elim", which then triggers a "fall" again. After that, every fruit object is either on another one, or on the ground, plus, there's no "line of 3+", so the player's move ends. Since the player's move has ended, the eater should start moving:
 
 <pre>
 Moves: 0/1        Moves: 1/1 (solved)
