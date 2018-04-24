@@ -1,7 +1,7 @@
 # Bad Apples Quiz Solver
 A C / Lua bilingual solver program to solve all the quizzes in the iOS game Bad Apples. 
 
-This is a hobby project done in 2011. Bad Apples is an iOS game including 100 different quizzes. Each quiz has a fixed 6*5 (6 rows, 5 columns) gridded playground, with 30 grids (30==6*5) in all.
+This is a hobby project done in 2011. Bad Apples is an iOS game including 100 different quizzes. Each quiz has a fixed *n*x*m* (*n* rows, *m* columns) gridded playground, with *n*x*m* grids in all.
 
 ## Basic rules
 In the playground, there are 3 normal types of fruit: yellow (y for short), red (r for short) and blue (b for short). The player should make a move (I'll explain later) to form a horizontal or vertical "line of 3+": a horizontal or vertical (not diagonal) line of 3 or more same kind of fruit objects (e.g. 3 red ones in a horizontal line, or 5 blue ones in a vertical line) to eliminate them. The player must eliminate all fruit objects within a certain amount of moves to solve a quiz level. There are 100 levels in that game.
@@ -131,4 +131,23 @@ Now let's see what happens here by **column**.
 
 **The player don't have to eliminate bad apples or eaters to solve the quiz.** That's why the last state is considered a win state.
 
+## Complicated example
+The most complicated level is level 50, which has a 9x6 playground with 54 grids:
+<pre>
+Moves: 0/5
+  1 2 3 4 5 6
+1 -   b - - -
+2 -   r - - -
+3 -   r - - -
+4 - r b - - -
+5 - y r - - -
+6 - y b - - -
+7 - r b r - - 
+8 - y y b y y 
+9 y b y b r b
+</pre>
 
+The official solution requires 5 moves. But actually 4 moves is sufficient:
+(4,4)down, (7,3)right, (9,5)right, (9,2)right
+
+You can verify the solution with the C or Lua program. The C program is very fast and highly optimized. The Lua program is relatively slow.
