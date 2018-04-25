@@ -4,7 +4,7 @@
  *
  *  Created by 尹 伊 on 11-2-16.
  *  Copyright 2011 286studio. All rights reserved.
- *do_step
+ *
  */
 
 #include "BAQuiz.h"
