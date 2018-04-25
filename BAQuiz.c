@@ -15,6 +15,7 @@
 
 #define SWAP(i1,i2) {int temp=i1;i1=i2;i2=temp;}
 
+// returns its user-friendly string representation
 char* _tostring(BAQuiz* q){
 	static char s[1024];
 	static char info[80];
@@ -65,6 +66,8 @@ char* _tostring(BAQuiz* q){
 	free(stars);
 	return s;
 }
+
+// simulates the player's move: move a fruit object at (r,c), via direction d
 void _move_item_at(BAQuiz* q,int r,int c,int d){
 	assert(q->table[r][c]!=NONE);
 	if(RIGHT==d){
@@ -84,6 +87,8 @@ void _move_item_at(BAQuiz* q,int r,int c,int d){
 		assert(0);
 	}
 }
+
+// the "fall" function: let all air fruit objects fall down, from bottom row to top row
 void _fall(BAQuiz* q){
 	int size=q->ROWS*sizeof(int);
 	int* newCol=malloc(size);
@@ -104,6 +109,8 @@ void _fall(BAQuiz* q){
 	}
 	free(newCol);
 }
+
+// returns the count of the max consecutive same-kind fruit object
 int _max_same(BAQuiz* q,int r,int c,int d){
 	int ret=1;
 	int item=q->table[r][c];
@@ -141,6 +148,9 @@ int _max_same(BAQuiz* q,int r,int c,int d){
 	}
 	return ret;
 }
+
+// remove "line of 3+"s and returns whether a "remove" action has been made
+// note: if a bad apple is removed, it returns -1
 int _remove3(BAQuiz* q){
 	int has_removed=0;
 	//1.make a copy of q
@@ -150,8 +160,7 @@ int _remove3(BAQuiz* q){
 		for(int c=0;c<q->COLS;c++){
 			if(NONE!=q->table[r][c] && EATER!=q->table[r][c]){
 				int max=0;
-				//test RIGHT
-				//条件: [c]<[COLS-2]
+				//test RIGHT: c can not exceed 3rd col from the right
 				if(c<q->COLS-2){
 					max=q->max_same(q,r,c,RIGHT);
 					if(max>=3){
@@ -163,8 +172,7 @@ int _remove3(BAQuiz* q){
 							has_removed++;
 					}
 				}
-				//test DOWN
-				//条件: [r]<[ROWS-2]
+				//test DOWN: r can not exceed 3rd row from the bottom
 				if(r<q->ROWS-2){
 					max=q->max_same(q,r,c,DOWN);
 					if(max>=3){
@@ -186,6 +194,8 @@ int _remove3(BAQuiz* q){
 	BAQuizRelease(mark);
 	return has_removed;
 }
+
+// aux function: find first fruit object item from r,c and via direction d
 int _find_first(BAQuiz* q,int item,int r,int c,int d){
 	if(r<0||r>=q->ROWS||c<0||c>=q->COLS)
 		return NOTFOUND;
@@ -199,6 +209,8 @@ int _find_first(BAQuiz* q,int item,int r,int c,int d){
 		assert(0);
 	}
 }
+
+// aux function: similarly, but find the first not(item)
 int _find_first_not(BAQuiz* q,int item,int r,int c,int d){
 	if(r<0||r>=q->ROWS||c<0||c>=q->COLS)
 		return NOTFOUND;
@@ -212,6 +224,8 @@ int _find_first_not(BAQuiz* q,int item,int r,int c,int d){
 		assert(0);
 	}	
 }
+
+// the "eat" function for eaters
 void _eat(BAQuiz* q){
 	for(int c=0;c<q->COLS;c++){
 		int f_e=q->find_first(q,EATER,q->ROWS-1,c,UP);
@@ -243,6 +257,8 @@ void _eat(BAQuiz* q){
 		}//end of if(NOTFOUND==f_e)... elseif... else
 	}//end of for(int c=0;c<q->COLS...
 }
+
+// one "step" is a cycle of fall() and remove(), returns false if a bad apple is removed, true otherwise
 int _do_step(BAQuiz* q,int n){
 	n=(n<0?10:n);
 	for(int i=0;i<n;i++){
@@ -266,6 +282,8 @@ int _do_step(BAQuiz* q,int n){
 	}
 	return 1;
 }
+
+// returns if the current state of the playground is "solved"
 int _is_solved(BAQuiz* q){
 	for(int r=0;r<q->ROWS;r++)
 		for(int c=0;c<q->COLS;c++)
@@ -273,6 +291,8 @@ int _is_solved(BAQuiz* q){
 				return 0;
 	return 1;
 }
+
+// returns if the current state of the playground is "failed"
 int _is_failed(BAQuiz* q){
 	int yellow=0,blue=0,red=0;
 	for(int r=0;r<q->ROWS;r++)
@@ -293,6 +313,8 @@ int _is_failed(BAQuiz* q){
 		}
 	return q->eaters==0 && (yellow==1||yellow==2||blue==1||blue==2||red==1||red==2);
 }
+
+// the main solve() function
 int _solve(BAQuiz* q){
 	if(q->is_solved(q))
 		return 1;
@@ -359,6 +381,7 @@ int _solve(BAQuiz* q){
 		return 0;
 	}//end of if-else if-else
 }
+
 BAQuiz* BAQuizCreateBasic(int rows,int cols){
 	struct BAQuiz* object=malloc(sizeof(BAQuiz));
 	//1.初始化变量
@@ -382,12 +405,14 @@ BAQuiz* BAQuizCreateBasic(int rows,int cols){
 	object->solve=_solve;
 	return object;
 }
+
 void BAQuizRelease(BAQuiz* q){
 	for(int r=0;r<q->ROWS;r++)
 		free(q->table[r]);
 	free(q->table);
 	free(q);	
 }
+
 BAQuiz* BAQuizCreate(int rows,int cols,const char* s,int n){
 	struct BAQuiz* object=BAQuizCreateBasic(rows, cols);
 	object->eaters=0;
@@ -423,6 +448,7 @@ BAQuiz* BAQuizCreate(int rows,int cols,const char* s,int n){
 	object->N=n;
 	return object;	
 }
+
 BAQuiz* BAQuizCopy(BAQuiz* q,int n){
 	BAQuiz* object=BAQuizCreateBasic(q->ROWS,q->COLS);
 	for(int r=0;r<q->ROWS;r++)
@@ -431,6 +457,7 @@ BAQuiz* BAQuizCopy(BAQuiz* q,int n){
 	object->N=n;
 	return object;
 }
+
 void BAQuizAssaign(BAQuiz* q1,const BAQuiz* q2){
 	assert(q2->ROWS==q1->ROWS && q2->COLS==q1->COLS);
 	for(int r=0;r<q1->ROWS;r++)

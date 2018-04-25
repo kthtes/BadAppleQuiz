@@ -32,6 +32,7 @@ struct BAQuiz {
 	int** table;
 	int eaters;
 	int N;
+	// here we use function mapping to simulate a C++ style
 	char* (*tostring)(struct BAQuiz* q);
 	void (*move_item_at)(struct BAQuiz* q,int r,int c,int d);
 	void (*fall)(struct BAQuiz* q);
